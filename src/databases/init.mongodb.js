@@ -1,24 +1,22 @@
 const mongoose = require('mongoose');
 
-const connectionString = 'mongodb://localhost:27018/';
-
 class Database {
-	constructor {
-	this.connect();
-	};
-	
-	mongoose
-	.connect(connectionString)
-	.then((_) => console.log('Connected DB'))
-	.catch((error) => console.error(error));
-	static getInstance () {
+	constructor() {
+		this.connect();
+	}
+
+	connect(type = 'mongodb') {
+		mongoose
+			.connect(process.env.MONGO_CONNECTION_STRING)
+			.catch((err) => console.error(err));
+	}
+
+	static getInstance() {
 		if (!Database.instance) {
 			Database.instance = new Database();
 		}
 	}
-	return Database.instance
-};
-
-
+}
 const instanceDB = Database.getInstance();
-module.exports = instanceDB
+
+module.exports = instanceDB;
