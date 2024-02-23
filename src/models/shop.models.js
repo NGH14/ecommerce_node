@@ -4,7 +4,7 @@ const COLLECTION_NAME = "pet shops";
 const DOCUMENT_NAME = "shop";
 
 
-var userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     timestamp: true,
     collection: COLLECTION_NAME,
     name:{
